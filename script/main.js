@@ -1,10 +1,23 @@
-let money,
-    income,
-    addExpenses,
-    deposit,
-    mission,
-    period;
+let money = 150000,
+    income = '50000',
+    addExpenses = `Интернет, Такси, Коммуналка`,
+    deposit = true,
+    mission = 1000000,
+    period = 12,
+    budgetDay = money / 30;
 
-alert('JS-Learn');
+console.log(typeof money);
+console.log(typeof income);
+console.log(typeof deposit);
+console.log('Период равен ' + period  + ' месяцев');
+console.log('Цель заработать ' + mission  + ' рублей');
 
-console.log('сообщение с любым текстом');
+console.log(addExpenses.toLowerCase());
+
+console.log(addExpenses.split(', '));
+
+console.log(budgetDay);
+
+
+
+
