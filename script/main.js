@@ -1,22 +1,22 @@
-let money = 150000,
-    income = '50000',
-    addExpenses = `Интернет, Такси, Коммуналка`,
-    deposit = true,
-    mission = 1000000,
-    period = 12,
-    budgetDay = money / 30;
+let num = 266219;
 
-console.log(typeof money);
-console.log(typeof income);
-console.log(typeof deposit);
-console.log('Период равен ' + period  + ' месяцев');
-console.log('Цель заработать ' + mission  + ' рублей');
+let multiplication = [...num.toString()].reduce((a,b) => a * b);
+console.log(multiplication);
 
-console.log(addExpenses.toLowerCase());
 
-console.log(addExpenses.split(', '));
+let exponentiation = multiplication ** 3
+console.log(exponentiation);
 
-console.log(budgetDay);
+let bothNum = exponentiation.toString().slice(0, 2);
+console.log (bothNum);
+
+
+
+
+
+
+
+
 
 
 
