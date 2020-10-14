@@ -1,5 +1,5 @@
 let money = 150000,
-    income = '50000',
+    income = 'фриланс',
     addExpenses = `Интернет, Такси, Коммуналка`,
     deposit = true,
     mission = 1000000,
@@ -12,9 +12,7 @@ console.log(typeof deposit);
 console.log('Период равен ' + period  + ' месяцев');
 console.log('Цель заработать ' + mission  + ' рублей');
 
-console.log(addExpenses.toLowerCase());
-
-console.log(addExpenses.split(', '));
+console.log(addExpenses.toLowerCase().split(', '));
 
 console.log(budgetDay);
 
