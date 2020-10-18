@@ -54,17 +54,17 @@ console.log('За сколько месяцев будет достигнута 
 
 console.log('Бюджет на день - ', Math.floor(budgetMonth / 30));
 
-budgetDay = function(){
-  if ((Math.floor(budgetMonth / 30)) >= 1200){
+budgetDay = Math.floor(budgetMonth / 30);
+console.log('budgetDay: ', budgetDay);
+
+  if (budgetDay >= 1200){
     console.log('У вас высокий уровень дохода')
-  } else if((Math.floor(budgetMonth / 30)) >= 600 && (Math.floor(budgetMonth / 30)) <= 1199){
+  } else if(budgetDay >= 600 && budgetDay <= 1199){
     console.log('У вас средний уровень дохода')
-  } else if ((Math.floor(budgetMonth / 30)) <= 599 && (Math.floor(budgetMonth / 30)) >= 0 ){
+  } else if (budgetDay <= 599 && budgetDay >= 0 ){
     console.log('К сожалению у вас уровень дохода ниже среднего');
-  } else if ((Math.floor(budgetMonth / 30)) < 0 ) {
+  } else if (budgetDay < 0 ) {
     console.log('Что то пошло не так')
   }
-} 
-budgetDay()
-// console.log('Бюджет на день - ', );
+
 
