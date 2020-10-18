@@ -1,70 +1,56 @@
-let money = 150000,
-  income = "фриланс",
-  addExpenses = `Интернет, Такси, Коммуналка`,
-  deposit = true,
-  mission = 1000000,
-  period = 12,
-  budgetDay = money / 30,
-  expenses1,
-  expenses2,
-  amount1,
-  amount2,
-  budgetMonth,
-  month;
+let lang;
 
-console.log(typeof money);
-console.log(typeof income);
-console.log(typeof deposit);
-console.log("Период равен " + period + " месяцев");
-console.log("Цель заработать " + mission + " рублей");
+lang = prompt('Введите "ru" или "en"');
 
-console.log(addExpenses.toLowerCase().split(", "));
+let i = new Date( )
+i =  i.getDay()
 
-console.log(budgetDay);
+let en = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
-money = +prompt("Ваш месячный доход?");
-let checkMoney = ( !parseInt(money)) ? alert('Не корректный ввод, введите число!')  : true
-console.log("Месячный доход - ", money);
+for ( i; i < en.length; ){
+  console.log(en[i])
+  break
+}
+console.log(i);
 
-addExpenses = prompt(
-  "Перечислите возможные расходы за рассчитываемый период через запятую"
-);
-console.log(addExpenses);
-
-deposit = confirm('Есть ли у вас депозит в банке?')
-console.log('deposit: ', deposit);
-
-expenses1 = prompt('Введите обязательную статью расходов?');
-
-amount1 = +prompt('Во сколько это обойдется?');
-let check = ( !parseInt(amount1)) ? alert('Не корректный ввод, введите число!')  : true
+// const exmp = () => {
+//   if ( i == en.length){
+//     console.log(en[i]);
+//   } else {
+//     console.log('qween');
+//   }
+// }
+// exmp()
 
 
-expenses2 = prompt('Введите обязательную статью расходов?');
+// const chekDayRu = () => {
+//   if ( i === 1) {
+//     console.log('понедельник');
+//   } else if (i === 2 ) {
+//     console.log('вторник');
+//   } else if ( i === 3 ) {
+//     console.log('среда');
+//   } else if ( i === 4 ) {
+//     console.log('четверг');
+//   } else if ( i === 5 ) {
+//     console.log('пятница');
+//   } else if ( i === 6 ) {
+//     console.log('суббота');
+//   } else if ( i === 0 ){
+//     console.log('воскресенье');
+//   }
+  
+// }
+// // chekDayRu()
 
-amount2 = +prompt('Во сколько это обойдется?');
-let check2 = ( !parseInt(amount2)) ? alert('Не корректный ввод')  : true
+// const chakDayEn = () => console.log('English weekday');
+// // chakDayEn()
 
-
-budgetMonth = money - (amount1 + amount2);
-console.log('Бюджет на месяц - ', budgetMonth);
-
-month = Math.ceil(mission / budgetMonth)
-console.log('За сколько месяцев будет достигнута цель: ', month);
-
-console.log('Бюджет на день - ', Math.floor(budgetMonth / 30));
-
-budgetDay = function(){
-  if ((Math.floor(budgetMonth / 30)) >= 1200){
-    console.log('У вас высокий уровень дохода')
-  } else if((Math.floor(budgetMonth / 30)) >= 600 && (Math.floor(budgetMonth / 30)) <= 1199){
-    console.log('У вас средний уровень дохода')
-  } else if ((Math.floor(budgetMonth / 30)) <= 599 && (Math.floor(budgetMonth / 30)) >= 0 ){
-    console.log('К сожалению у вас уровень дохода ниже среднего');
-  } else if ((Math.floor(budgetMonth / 30)) < 0 ) {
-    console.log('Что то пошло не так')
-  }
-} 
-budgetDay()
-// console.log('Бюджет на день - ', );
-
+// const change = () => {
+//   if ( lang === 'ru' || lang === 'RU'){
+//     chekDayRu()
+//   } else if ( lang === 'en' || lang === 'EN' ){
+//     chakDayEn()
+//   }
+// }
+// change()
