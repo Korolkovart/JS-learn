@@ -64,23 +64,21 @@ const getStatusIncome = function(){
 // const cost = foo()
 
 const getExpensesMonth = function(){
-  let sum;
+  let sum = 0;
 
-  for (let i = 0; i < 1; i++){
-    expenses[i] = prompt('Введите обязательную статью расходов?')
+  for (let i = 0; i < 2; i++){
+    expenses[i] = +prompt('Введите обязательную статью расходов?')
     
-    if (!isNumber){
-      sum += prompt('Во сколько это обойдется?')
-    } else{
-      sum += prompt('Во сколько это обойдется?')
+    do{
+      sum += +prompt('Во сколько это обойдется?')
     }
-
-  console.log('sum',sum);
+    while(!isNumber(sum))
+        
   }
   return sum
 };
 
-const expensesAmount = getExpensesMonth()
+const expensesAmount = getExpensesMonth();
 
 console.log('Расходы за месяц', expensesAmount);
 
@@ -95,11 +93,16 @@ budgetDay = Math.floor(accumulateMonth / 30);
 
 
 function getTargetMonth(a, b){
-  return Math.ceil(a / b)
+  if ((a / b) > 0 ){
+    return  console.log('Цель будет достигнута :', Math.ceil(a / b) + ' мес');
+  } else if ((a / b) < 0 ){
+    return  console.log('Цель не будет достигнута');
+  }
 }
+getTargetMonth( mission, accumulateMonth)
 
 console.log([...addExpenses.toLowerCase().split(',')]);
-console.log('getTargetMonth :', getTargetMonth( mission, accumulateMonth));
+// console.log('getTargetMonth :', getTargetMonth( mission, accumulateMonth));
 console.log('budgetDay :', budgetDay);
 console.log(getStatusIncome());
 
