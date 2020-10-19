@@ -1,5 +1,5 @@
 const isNumber = function(n){
-  return !isNaN(parseFloat(n)) && isFinite(n)
+  return !isNaN(parseFloat(n)) && isFinite(n) && n.trim()
 };
 
 
@@ -43,48 +43,39 @@ showTypeOf(deposit);
 
 
 const getStatusIncome = function(){
-  if (budgetDay >= 1200){
+  if (budgetDay > 1200){
     return ('У вас высокий уровень дохода')
-  } else if(budgetDay >= 600 && budgetDay <= 1199){
+  } else if(budgetDay > 600 && budgetDay < 1200){
     return ('У вас средний уровень дохода')
-  } else if (budgetDay <= 599 && budgetDay >= 0 ){
+  } else if (budgetDay < 600 && budgetDay > 0 ){
     return ('К сожалению у вас уровень дохода ниже среднего');
   } else if (budgetDay < 0 ) {
     return ('Что то пошло не так')
   }
 }
 
-// let ku;
-// const foo = function(){
-//   do{
-//     ku = prompt('Во сколько это обойдется?')
-//   }
-//   while(!isNumber(ku))
-// }
-// const cost = foo()
-
 const getExpensesMonth = function(){
   let sum = 0;
+  let current = 0;
 
   for (let i = 0; i < 2; i++){
     expenses[i] = +prompt('Введите обязательную статью расходов?')
     
     do{
-      sum += +prompt('Во сколько это обойдется?')
-    }
-    while(!isNumber(sum))
-        
+      current = prompt('Во сколько это обойдется?');
+    } while(!isNumber(current))
+    sum += parseFloat(current) 
   }
-  return sum
+  return sum;
 };
 
 const expensesAmount = getExpensesMonth();
 
 console.log('Расходы за месяц', expensesAmount);
 
-function getAccumulatedMonth(a, b){
-  const accumulate = a - b;
-  return accumulate
+function getAccumulatedMonth(money, expensesAmount){
+  return money - expensesAmount;
+   
 }
 
 accumulateMonth = getAccumulatedMonth(money, expensesAmount)
@@ -92,10 +83,10 @@ budgetDay = Math.floor(accumulateMonth / 30);
 
 
 
-function getTargetMonth(a, b){
-  if ((a / b) > 0 ){
-    return  console.log('Цель будет достигнута :', Math.ceil(a / b) + ' мес');
-  } else if ((a / b) < 0 ){
+function getTargetMonth(mission, accumulateMonth){
+  if ((mission / accumulateMonth) > 0 ){
+    return  console.log('Цель будет достигнута :', Math.ceil(mission / accumulateMonth) + ' мес');
+  } else if ((mission / accumulateMonth) < 0 ){
     return  console.log('Цель не будет достигнута');
   }
 }
