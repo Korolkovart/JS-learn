@@ -50,22 +50,22 @@ showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit);
 
-function getAccumulatedMonth(a, b, c){
-  const accumulate = a - (b + c);
+function getAccumulatedMonth(money, amount1, amount2){
+  const accumulate = money - (amount1 + amount2);
   return accumulate
 }
 
 accumulateMonth = getAccumulatedMonth(money, amount1, amount2)
 
-budgetDay = Math.floor(accumulateMonth / 30);
-// console.log('budgetDay: ', budgetDay);
+budgetDay = accumulateMonth / 30;
+// console.log('Бюджет на месяц - : ', Math.floor(budgetDay));
 
 const getStatusIncome = function(){
-  if (budgetDay >= 1200){
+  if (budgetDay > 1200){
     return ('У вас высокий уровень дохода')
-  } else if(budgetDay >= 600 && budgetDay <= 1199){
+  } else if(budgetDay > 600 && budgetDay < 1200){
     return ('У вас средний уровень дохода')
-  } else if (budgetDay <= 599 && budgetDay >= 0 ){
+  } else if (budgetDay < 600 && budgetDay > 0 ){
     return ('К сожалению у вас уровень дохода ниже среднего');
   } else if (budgetDay < 0 ) {
     return ('Что то пошло не так')
@@ -74,9 +74,8 @@ const getStatusIncome = function(){
 
 
 
-const getExpensesMonth = function(a, b){
-  const ExpensesMonth = a + b;
-  return ExpensesMonth;
+const getExpensesMonth = function(amount1, amount1){
+  return amount1 + amount1;
 }
 
 
