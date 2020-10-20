@@ -1,7 +1,7 @@
 
 
 const startGame = function() {
-  let number = Math.ceil(Math.random()*10)
+  let number = Math.ceil(Math.random()*100)
   let counter = 0
 
   console.log(number);
