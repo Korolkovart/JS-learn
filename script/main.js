@@ -2,14 +2,14 @@ const calculate = document.getElementById('start'),
     plus = document.getElementsByTagName('button')[0],
     plusTwo = document.getElementsByTagName('button')[1],
     checkBox = document.getElementById('deposit-check'),
-    value = document.getElementsByClassName('result'),
-    budgetMonth = document.getElementsByClassName('budget_month-value'),
-    budgetDay = document.getElementsByClassName('budget_day-value'),
-    expensesMonth = document.getElementsByClassName('expenses_month-value'),
-    additionalIncome = document.getElementsByClassName('additional_income-value'),
-    additionalExpenses = document.getElementsByClassName('additional_expenses-value'),
-    incomPeriod = document.getElementsByClassName('income_period-value'),
-    targetMonth = document.getElementsByClassName('target_month-value'),
+    // value = document.getElementsByClassName('result')[0],
+    budgetMonth = document.getElementsByClassName('budget_month-value')[0],
+    budgetDay = document.getElementsByClassName('budget_day-value')[0],
+    expensesMonth = document.getElementsByClassName('expenses_month-value')[0],
+    additionalIncome = document.getElementsByClassName('additional_income-value')[0],
+    additionalExpenses = document.getElementsByClassName('additional_expenses-value')[0],
+    incomPeriod = document.getElementsByClassName('income_period-value')[0],
+    targetMonth = document.getElementsByClassName('target_month-value')[0],
     salaryAmount = document.querySelector('.salary-amount'),
     incomeTitle = document.querySelectorAll('.income-title')[1],
     incomeAmount = document.querySelector('.income-amount'),
@@ -23,7 +23,7 @@ const calculate = document.getElementById('start'),
 
 
 
-
+console.log(periodSelect);
 
 
 
