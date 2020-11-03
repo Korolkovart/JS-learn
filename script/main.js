@@ -199,20 +199,20 @@ let appData = {
   calcSavedMoney: function () {
     return this.budgetMonth * periodSelect.value;
   },
-  reset: () => {
+  reset: function(){
 
-    appData.budget = 0;
-    appData.budgetDay = 0;
-    appData.deposit = false;
-    appData.income = {};
-    appData.addIncome = [];
-    appData.expenses = {};
-    appData.addExpenses = [];
-    appData.percentDeposit = 0;
-    appData.moneyDeposit = 0;
-    appData.budgetMonth = 0;
-    appData.expensesMonth = 0;
-    appData.incomeMonth = 0;
+    this.budget = 0;
+    this.budgetDay = 0;
+    this.deposit = false;
+    this.income = {};
+    this.addIncome = [];
+    this.expenses = {};
+    this.addExpenses = [];
+    this.percentDeposit = 0;
+    this.moneyDeposit = 0;
+    this.budgetMonth = 0;
+    this.expensesMonth = 0;
+    this.incomeMonth = 0;
     
     let dataInputReset = document.querySelectorAll(".data input[type = text]"),
       resultInputReset = document.querySelectorAll(
@@ -231,7 +231,7 @@ let appData = {
     });
 
 
-    for (let i = 1; i < incomeItems.length; i++) {
+    for (let i = 1; i < incomeItems.length; i++) { 
       incomeItems[i].parentNode.removeChild(incomeItems[i]);
       plus.style.display = "block";
     }
@@ -247,7 +247,7 @@ let appData = {
     plusTwo.removeAttribute("disabled");
     calculate.style.display = "block";
     cancel.style.display = "none";
-
+    checkBox.checked = false;
     console.log(appData);
 
   }
@@ -257,6 +257,7 @@ periodSelect.addEventListener("input", appData.getRange);
 salaryAmount.addEventListener("input", (e) => {
   calculate.disabled = !(e.target.value.length > 1);
 });
+
 calculate.addEventListener("click", appData.start.bind(appData));
 plusTwo.addEventListener("click", appData.addExpensesBlock);
 plus.addEventListener("click", appData.addIncomeBlock);
