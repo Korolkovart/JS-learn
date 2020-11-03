@@ -60,8 +60,8 @@ let appData = {
     inputs.forEach((item) => {
       item.setAttribute("disabled", "disabled");
     });
-    plus.setAttribute("disabled", "disabled");
-    plusTwo.setAttribute("disabled", "disabled");
+    plus.setAttribute("disabled", "true");
+    plusTwo.setAttribute("disabled", "true");
     calculate.style.display = "none";
     cancel.style.display = "block";
 
