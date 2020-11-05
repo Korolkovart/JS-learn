@@ -34,7 +34,7 @@ DomElement.prototype.create = function(){
 }
 
 const exp = new DomElement('.hook', 70+'px', 200+'px', 'tomato', 'medium', 'Тут div с классом')
-const exp1 = new DomElement('#hook', 50+'px', 200+'px', 'aqua', 'larger', 'А тут параграф с id')
+const exp1 = new DomElement('#look', 50+'px', 200+'px', 'aqua', 'larger', 'А тут параграф с id')
 
 exp.create()
 exp1.create()
