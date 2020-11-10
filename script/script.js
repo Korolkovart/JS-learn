@@ -53,7 +53,78 @@ window.addEventListener('DOMContentLoaded', function(){
 
   }
   let setIntervalID = setInterval(countTimer, 1000, '11 november 2020')
-  // console.log(setIntervalID);
+ //menu
+  const toggleMenu = () => {
+    const btnMenu = document.querySelector('.menu'),
+      menu = document.querySelector('menu'),
+      closeBtn = document.querySelector('.close-btn'),
+      // menuItems = menu.querySelectorAll('ul>li'),
+      anchors = menu.querySelectorAll('ul>li>a[href*="#"]'),
+      scrollBtn = document.querySelector('main>a[href*="#"]');
+
+  const handlerMenu = () =>{
+    menu.classList.toggle('active-menu')
+  }
+
+    btnMenu.addEventListener('click', handlerMenu);
+    closeBtn.addEventListener('click', handlerMenu);
+
+    scrollBtn.addEventListener('click', (e) => {
+      e.preventDefault()
+      const blockID = scrollBtn.getAttribute('href').substr(1)
+      document.getElementById(blockID).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+
+    })
+
+    for (let anchor of anchors) {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault()
+        const blockID = anchor.getAttribute('href').substr(1)
+        document.getElementById(blockID).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      })
+    }
+
+  }
+  toggleMenu()
+
+  //popup
+  const togglePopUp = () => {
+    const popup = document.querySelector('.popup'),
+      popupBtn = document.querySelectorAll('.popup-btn'),
+      popupClose = document.querySelector('.popup-close'),
+      popupContent = document.querySelector('.popup-content'),
+      widthScreen = document.documentElement.clientWidth;
+      console.log(widthScreen);
+      popupBtn.forEach((elem) => {
+        elem.addEventListener('click', () => {
+
+          if(widthScreen > 750){
+            let start = Date.now();
+            let i = 100;
+            let timer = setInterval(() => {
+              let timePassed = Date.now() - start ;
+              popupContent.style.left = timePassed / 52 + '%';
+              if (timePassed > 2000) clearInterval(timer);
+              popup.style.display = 'block'
+            }, 10);
+          } else {
+            popup.style.display = 'block'
+          }
+        })
+      })
+
+      popupClose.addEventListener('click', () => {
+        popup.style.display = 'none'
+      })
+  }
+  togglePopUp()
+
+  // animationPopup()
 });
 
-// document.body.textContent = 'kuku epty'
