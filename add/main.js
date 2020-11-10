@@ -18,7 +18,7 @@ function timer(deadline){
         greeting = 'Доброе утро!';
       } else if(hours > 12 && hours < 17){
         greeting = 'Добрый день!';
-      } else if(hours > 17 && hours < 0){
+      } else if(hours > 17 || hours < 0){
         greeting = 'Добрый вечер!';
       }
 
