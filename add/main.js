@@ -39,7 +39,7 @@ function timer(deadline){
         hours = '0' + hours
       }
 
-      day = Math.floor(timeRemaining / 60 / 60 / 24)
+      day = Math.floor(timeRemaining / 60 / 60 / 24) + 1;
 
       switch (dayToday){
         case 0:
