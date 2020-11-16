@@ -270,7 +270,7 @@ window.addEventListener('DOMContentLoaded', function(){
       nextSlide(slide, currentSlide, 'portfolio-item-active');
       nextSlide(dot, currentSlide, 'dot-active');
     }
-    const stratSlide = (time = 300000) => {
+    const stratSlide = (time = 3000) => {
       interval = setInterval(autoPlaySlide, time)
     };
 
@@ -324,7 +324,7 @@ window.addEventListener('DOMContentLoaded', function(){
           stratSlide()
         }
     });
-    stratSlide(300000)
+    stratSlide(1500)
   }
   
   slider()
