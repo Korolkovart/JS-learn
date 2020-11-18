@@ -2,7 +2,6 @@ window.addEventListener('DOMContentLoaded', function(){
   'use strict';
 
   //timer
-
   function countTimer(deadline){
     let timerHours = document.querySelector('#timer-hours'),
       timerMinutes = document.querySelector('#timer-minutes'),
@@ -327,6 +326,33 @@ window.addEventListener('DOMContentLoaded', function(){
     stratSlide(1500)
   }
   
+  //смена фото
+  const changePhoto = () => {
+    const dataImg = document.querySelectorAll('.command__photo');
+
+    for(let i = 0; i < dataImg.length; i++){
+      let firstValue = dataImg[i].src
+      dataImg[i].addEventListener('mouseenter', (e) => {
+        event.target.src = event.target.dataset.img;
+      })
+      dataImg[i].addEventListener('mouseleave', (e) => {
+        event.target.src = firstValue;
+      })
+    }
+  } 
+  changePhoto()
+
+  //regExp
+  const imputRegEx = () => {
+    let calcItem = document.querySelectorAll('.calc-item');
+      for(let i = 1; i < calcItem.length; i++){
+        calcItem[i].addEventListener('input', () => {
+          calcItem[i].value = calcItem[i].value.replace(/\D/g, '');
+        })
+      }
+  }
+  imputRegEx()
+
   slider()
 
 });
