@@ -1,60 +1,46 @@
 window.addEventListener('DOMContentLoaded', function(){
   'use strict';
 
-  //timer
-  function countTimer(deadline){
-    let timerHours = document.querySelector('#timer-hours'),
+ //timer
+
+ const countTimer = (deadline) => {
+  let timerHours = document.querySelector('#timer-hours'),
       timerMinutes = document.querySelector('#timer-minutes'),
       timerSeconds = document.querySelector('#timer-seconds');
 
-    function getTimeRemaining(){
-      let dateStop = new Date(deadline).getTime(),
-        dateNow = new Date().getTime(),
-        timeRemaining = (dateStop - dateNow) / 1000,
-        second,
-        minuts,
-        hours;
-
-        second = Math.floor(timeRemaining % 60)
-        if(second < 10){
-          second = '0' + second
-        }
-
-        minuts = Math.floor((timeRemaining / 60) % 60)
-        if(minuts < 10){
-          minuts = '0' + minuts
-        }
-
-        hours = Math.floor(timeRemaining / 60 / 60)
-        if(hours < 10){
-          hours = '0' + hours
-        }
-
-        return { timeRemaining, hours, minuts, second }
-    }
-
-    function updateClock(){
-      let timer = getTimeRemaining()
-
-      if (timer.timeRemaining > 0){
-        timerHours.textContent = timer.hours;
-        timerMinutes.textContent = timer.minuts;
-        timerSeconds.textContent = timer.second;
-      
-      } else if (timer.timeRemaining <= 0){
-        timerHours.textContent = '00';
-        timerMinutes.textContent = '00';
-        timerSeconds.textContent = '00';
-        clearInterval(setIntervalID)
-      }
-    }
-    updateClock()
-
+  function getTimeRemaining() {
+      let    dateStop = new Date(deadline).getTime(),
+      dateNow = new Date().getTime(),
+      timeRemaining = (dateStop - dateNow)/1000,
+      seconds = Math.floor(timeRemaining % 60),
+      minutes = Math.floor((timeRemaining / 60) % 60),
+      hours = Math.floor(timeRemaining / 60 / 60);
+      return {timeRemaining, hours, minutes, seconds};
   }
-  let setIntervalID = setInterval(countTimer, 1000, '11 november 2020')
-
- //menu
-  const toggleMenu = () => {
+  let updateClock = () => {
+      let timer = getTimeRemaining();
+      
+      
+      timer.hours.toString().length < 2 ? timerHours.textContent = ("0" + timer.hours) : timerHours.textContent = timer.hours;
+      timer.minutes.toString().length < 2 ? timerMinutes.textContent = ("0" + timer.minutes) : timerMinutes.textContent = timer.minutes;
+      timer.seconds.toString().length < 2 ? timerSeconds.textContent = ("0" + timer.seconds) : timerSeconds.textContent = timer.seconds;
+      ;
+      
+      
+      if(timer.timeRemaining < 0){
+          clearInterval(setInterval);
+          timerHours.textContent = '00';
+          timerMinutes.textContent = '00';
+          timerSeconds.textContent = '00';
+      }
+  }
+  updateClock()
+  let intervalId = setInterval(updateClock, 1000)
+      
+}
+countTimer('24 november 2020')
+ 
+ const toggleMenu = () => {
     const btnMenu = document.querySelector('.menu'),
       menu = document.querySelector('menu'),
       closeBtn = document.querySelector('.close-btn'),
@@ -83,7 +69,6 @@ window.addEventListener('DOMContentLoaded', function(){
 
     main.addEventListener('click', (e) => {
       // e.preventDefault()
-      console.log(event.target);
       if(event.target.closest('.menu')){
         handlerMenu()
       } else if(event.target.tagName === 'A'){
@@ -344,12 +329,41 @@ window.addEventListener('DOMContentLoaded', function(){
 
   //regExp
   const imputRegEx = () => {
+    const form1Name = document.getElementById('form1-name'),
+      form1Phone = document.getElementById('form1-phone'),
+      form2Name = document.getElementById('form2-name'),
+      form2Phone = document.getElementById('form2-phone'),
+      form2Message = document.getElementById('form2-message'),
+      form3Name = document.getElementById('form3-name'),
+      form3Phone = document.getElementById('form3-phone');
+
     let calcItem = document.querySelectorAll('.calc-item');
       for(let i = 1; i < calcItem.length; i++){
         calcItem[i].addEventListener('input', () => {
           calcItem[i].value = calcItem[i].value.replace(/\D/g, '');
         })
       }
+      form1Name.addEventListener('input', () => {
+        form1Name.value = form1Name.value.replace(/[?!,.a-z0-9]+$/ig, '');
+      })
+      form1Phone.addEventListener('input', () => {
+        form1Phone.value = form1Phone.value.replace(/[^0-9\+]/g, '')
+      })
+      form2Name.addEventListener('input', () => {
+        form2Name.value = form2Name.value.replace(/[?!,.a-z0-9]+$/ig, '');
+      })
+      form2Phone.addEventListener('input', () => {
+        form2Phone.value = form2Phone.value.replace(/[^0-9\+]/g, '')
+      })
+      form2Message.addEventListener('input', () => {
+        form2Message.value = form2Message.value.replace(/[?!,.a-z0-9]+$/ig, '');
+      })
+      form3Name.addEventListener('input', () => {
+        form3Name.value = form3Name.value.replace(/[?!,.a-z0-9]+$/ig, '');
+      })
+      form3Phone.addEventListener('input', () => {
+        form3Phone.value = form3Phone.value.replace(/[^0-9\+]/g, '')
+      })
   }
   imputRegEx()
 
@@ -396,6 +410,117 @@ window.addEventListener('DOMContentLoaded', function(){
     })
   }
   calc(100)
+
+  //send_aiax-form
+  const sendForm = () => {
+    const errorMessage = 'Что то пошло не так',
+      loadMessage = 'Загрузка...',
+      sucsessMessage = 'Спасибо! Мы скоро с Вами свяжемся!',
+      form1Name = document.getElementById('form1-name'),
+      form1Email = document.getElementById('form1-email'),
+      form1Phone = document.getElementById('form1-phone'),
+      form2Name = document.getElementById('form2-name'),
+      form2Phone = document.getElementById('form2-phone'),
+      form2Message = document.getElementById('form2-message'),
+      form2Email = document.getElementById('form2-email'),
+      form3Name = document.getElementById('form3-name'),
+      form3Phone = document.getElementById('form3-phone'),
+      form3Email = document.getElementById('form3-email');
+    
+    const form = document.getElementById('form1'),
+      form2 = document.getElementById('form2'),
+      form3 = document.getElementById('form3');
+
+
+    const statusMessage = document.createElement('div');
+    statusMessage.style.cssText = `font-size: 2rem;`;
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      form.appendChild(statusMessage);
+      statusMessage.textContent = loadMessage;
+      const formData = new FormData(form);
+      let body = {};
+      formData.forEach((val, key) => {
+        body[key] = val;
+      })
+      postData(body, () => {
+        statusMessage.textContent = sucsessMessage;
+      },(error) => {
+        statusMessage.textContent = errorMessage;
+        console.error(error);
+      })
+      form1Name.value = '';
+      form1Email.value = '';
+      form1Phone.value = '';
+    });
+
+    form2.addEventListener('submit', (event) => {
+      event.preventDefault();
+      form2.appendChild(statusMessage);
+      statusMessage.textContent = loadMessage;
+      const formData = new FormData(form);
+      let body = {};
+      formData.forEach((val, key) => {
+        body[key] = val;
+      })
+      postData(body, () => {
+        statusMessage.textContent = sucsessMessage;
+      },(error) => {
+        statusMessage.textContent = errorMessage;
+        console.error(error);
+      })
+      form2Name.value = '';
+      form2Phone.value = '';
+      form2Message.value = '';
+      form2Email.value = '';
+    });
+
+    form3.addEventListener('submit', (event) => {
+      event.preventDefault();
+      form3.appendChild(statusMessage);
+      statusMessage.style.cssText = `color: #fff;`;
+      statusMessage.textContent = loadMessage;
+      const formData = new FormData(form);
+      let body = {};
+      formData.forEach((val, key) => {
+        body[key] = val;
+      })
+      postData(body, () => {
+        statusMessage.textContent = sucsessMessage;
+      },(error) => {
+        statusMessage.textContent = errorMessage;
+        console.error(error);
+      })
+      form3Name.value = '';
+      form3Phone.value = '';
+      form3Email.value = '';
+    });
+
+
+
+
+
+    const postData = (body, outputData, errorData) => {
+      const request = new XMLHttpRequest();
+      request.addEventListener('readystatechange', () => {
+        if (request.readyState !== 4){
+          return;
+        }
+        if (request.status === 200){
+          outputData()
+        } else {
+          errorData(request.status)
+        }
+      });
+      request.open('POST', './server.php');
+      request.setRequestHeader('Content-Type', 'application/json');
+      
+      request.send(JSON.stringify(body))
+    }
+  }
+  sendForm()
+
 
   slider()
 
