@@ -444,15 +444,14 @@ countTimer('24 november 2020')
       formData.forEach((val, key) => {
         body[key] = val;
       })
-      postData(body, () => {
-        statusMessage.textContent = sucsessMessage;
-      },(error) => {
-        statusMessage.textContent = errorMessage;
-        console.error(error);
-      })
-      form1Name.value = '';
-      form1Email.value = '';
-      form1Phone.value = '';
+      postData(body)
+        .then((result) => statusMessage.textContent = sucsessMessage)
+        .catch((reason) => statusMessage.textContent = sucsessMessage)
+        .finally(() => {
+          form1Name.value = '';
+          form1Email.value = '';
+          form1Phone.value = '';
+        })
     });
 
     form2.addEventListener('submit', (event) => {
@@ -464,16 +463,15 @@ countTimer('24 november 2020')
       formData.forEach((val, key) => {
         body[key] = val;
       })
-      postData(body, () => {
-        statusMessage.textContent = sucsessMessage;
-      },(error) => {
-        statusMessage.textContent = errorMessage;
-        console.error(error);
-      })
-      form2Name.value = '';
-      form2Phone.value = '';
-      form2Message.value = '';
-      form2Email.value = '';
+      postData(body)
+        .then((result) => statusMessage.textContent = sucsessMessage)
+        .catch((reason) => statusMessage.textContent = sucsessMessage)
+        .finally(() => {
+          form2Name.value = '';
+          form2Message.value = '';
+          form2Phone.value = '';
+          form2Email.value = '';
+        })
     });
 
     form3.addEventListener('submit', (event) => {
@@ -486,37 +484,35 @@ countTimer('24 november 2020')
       formData.forEach((val, key) => {
         body[key] = val;
       })
-      postData(body, () => {
-        statusMessage.textContent = sucsessMessage;
-      },(error) => {
-        statusMessage.textContent = errorMessage;
-        console.error(error);
-      })
-      form3Name.value = '';
-      form3Phone.value = '';
-      form3Email.value = '';
+      postData(body)
+      .then((result) => statusMessage.textContent = sucsessMessage)
+      .catch((reason) => statusMessage.textContent = sucsessMessage)
+      .finally(() => {
+        form3Name.value = '';
+        form3Phone.value = '';
+        form3Email.value = '';
+        })
     });
 
-
-
-
-
-    const postData = (body, outputData, errorData) => {
-      const request = new XMLHttpRequest();
-      request.addEventListener('readystatechange', () => {
-        if (request.readyState !== 4){
-          return;
-        }
-        if (request.status === 200){
-          outputData()
-        } else {
-          errorData(request.status)
-        }
+    const postData = (body) => {
+      return new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.addEventListener('readystatechange', () => {
+          if (request.readyState !== 4){
+            return;
+          }
+          if (request.status === 200){
+            resolve()
+          } else {
+            reject()
+          }
+        });
+        request.open('POST', './server.php');
+        request.setRequestHeader('Content-Type', 'application/json');
+        
+        request.send(JSON.stringify(body))
       });
-      request.open('POST', './server.php');
-      request.setRequestHeader('Content-Type', 'application/json');
       
-      request.send(JSON.stringify(body))
     }
   }
   sendForm()
