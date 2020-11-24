@@ -1,6 +1,5 @@
 window.addEventListener('DOMContentLoaded', function(){
   'use strict';
-
  //timer
 
  const countTimer = (deadline) => {
@@ -440,13 +439,21 @@ countTimer('24 november 2020')
       form.appendChild(statusMessage);
       statusMessage.textContent = loadMessage;
       const formData = new FormData(form);
-      let body = {};
-      formData.forEach((val, key) => {
-        body[key] = val;
+      // let body = {};
+      // formData.forEach((val, key) => {
+      //   body[key] = val;
+      // })
+      postData(formData)
+        .then((response) => {
+          if(response.status !== 200){
+            throw new Error('status network not 200')
+          }
+          statusMessage.textContent = sucsessMessage
+        })
+      .catch((error) => {
+        statusMessage.textContent = errorMessage
+        console.error(error)
       })
-      postData(body)
-        .then((result) => statusMessage.textContent = sucsessMessage)
-        .catch((reason) => statusMessage.textContent = sucsessMessage)
         .finally(() => {
           form1Name.value = '';
           form1Email.value = '';
@@ -459,13 +466,21 @@ countTimer('24 november 2020')
       form2.appendChild(statusMessage);
       statusMessage.textContent = loadMessage;
       const formData = new FormData(form);
-      let body = {};
-      formData.forEach((val, key) => {
-        body[key] = val;
+      // let body = {};
+      // formData.forEach((val, key) => {
+      //   body[key] = val;
+      // })
+      postData(formData)
+        .then((response) => {
+          if(response.status !== 200){
+            throw new Error('status network not 200')
+          } 
+          statusMessage.textContent = sucsessMessage
+        })
+      .catch((error) => {
+        statusMessage.textContent = errorMessage
+        console.error(error)
       })
-      postData(body)
-        .then((result) => statusMessage.textContent = sucsessMessage)
-        .catch((reason) => statusMessage.textContent = sucsessMessage)
         .finally(() => {
           form2Name.value = '';
           form2Message.value = '';
@@ -480,13 +495,21 @@ countTimer('24 november 2020')
       statusMessage.style.cssText = `color: #fff;`;
       statusMessage.textContent = loadMessage;
       const formData = new FormData(form);
-      let body = {};
-      formData.forEach((val, key) => {
-        body[key] = val;
+      // let body = {};
+      // formData.forEach((val, key) => {
+      //   body[key] = val;
+      // })
+      postData(formData)
+        .then((response) => {
+          if(response.status !== 200){
+            throw new Error('status network not 200')
+          }
+          statusMessage.textContent = sucsessMessage
+        })
+      .catch((error) => {
+        statusMessage.textContent = errorMessage
+        console.error(error)
       })
-      postData(body)
-      .then((result) => statusMessage.textContent = sucsessMessage)
-      .catch((reason) => statusMessage.textContent = sucsessMessage)
       .finally(() => {
         form3Name.value = '';
         form3Phone.value = '';
@@ -494,24 +517,34 @@ countTimer('24 november 2020')
         })
     });
 
-    const postData = (body) => {
-      return new Promise((resolve, reject) => {
-        const request = new XMLHttpRequest();
-        request.addEventListener('readystatechange', () => {
-          if (request.readyState !== 4){
-            return;
-          }
-          if (request.status === 200){
-            resolve()
-          } else {
-            reject()
-          }
-        });
-        request.open('POST', './server.php');
-        request.setRequestHeader('Content-Type', 'application/json');
-        
-        request.send(JSON.stringify(body))
+    const postData = (formData) => {
+      return fetch('./server.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData),
+        credentials: "include"
       });
+
+
+      // return new Promise((resolve, reject) => {
+      //   const request = new XMLHttpRequest();
+      //   request.addEventListener('readystatechange', () => {
+      //     if (request.readyState !== 4){
+      //       return;
+      //     }
+      //     if (request.status === 200){
+      //       resolve()
+      //     } else {
+      //       reject()
+      //     }
+      //   });
+      //   request.open('POST', './server.php');
+      //   request.setRequestHeader('Content-Type', 'application/json');
+        
+      //   request.send(JSON.stringify(body))
+      // });
       
     }
   }
