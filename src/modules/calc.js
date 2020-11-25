@@ -27,7 +27,7 @@ const calc = (price = 100 ) => {
     total = price * typeValue * squreValue * countValue * dayValue;
   }
 
-  totalValue.textContent = total;
+  totalValue.textContent = Math.floor(total);
 
   }
 

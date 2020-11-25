@@ -26,10 +26,11 @@ const imputRegEx = () => {
     formBtn[0].setAttribute('disabled', true)
     form1Name.addEventListener('input', () => {
       const checkEmail = /\w+@\w+\.\w{2,3}/.test(form1Email.value);
+      const checkPhone = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test(form1Phone.value);
       form1Name.value = form1Name.value.replace(/[?!,.a-z0-9]+$/ig, '');
       for(let i = 0; form1Name.value.length > i; i++){
         formBtn[0].setAttribute('disabled', true)
-        if (i > 1 && checkEmail === true){
+        if (i > 1 && checkEmail === true && checkPhone === true){
           formBtn[0].removeAttribute('disabled')
         }
       }
@@ -47,7 +48,13 @@ const imputRegEx = () => {
 
 
     form1Phone.addEventListener('input', () => {
+      const checkPhone = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test(form1Phone.value)
       form1Phone.value = form1Phone.value.replace(/[^0-9\+]/g, '')
+      if(checkPhone){
+        formBtn[0].removeAttribute('disabled')
+      }else {
+        formBtn[0].setAttribute('disabled', true)
+      }
     })
 
 
