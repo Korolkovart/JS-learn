@@ -20,6 +20,7 @@ import sendForm from './modules/sendForm';
 import slider from './modules/slider';
 
 
+
 //timer
 countTimer('26 november 2020') 
 //toggleMenu
@@ -38,3 +39,4 @@ calc()
 sendForm()
 // слайдер
 slider()
+
