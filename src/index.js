@@ -21,7 +21,7 @@ import slider from './modules/slider';
 
 
 //timer
-countTimer('24 november 2020') 
+countTimer('26 november 2020') 
 //toggleMenu
 toggleMenu()
 //popup

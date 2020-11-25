@@ -7,7 +7,7 @@ const toggleMenu = () => {
     scrollBtn = document.querySelector('main>a[href*="#"]'),
     main = document.querySelector('main');
     console.log(main);
-const handlerMenu = () =>{
+function handlerMenu(){
   menu.classList.toggle('active-menu')
 }
 
@@ -90,6 +90,8 @@ const handlerMenu = () =>{
     }
 
   })
+
 }
+
 
 export default toggleMenu;

@@ -14,7 +14,7 @@ const togglePopUp = () => {
             if (timePassed > 2000) clearInterval(timer);
             popup.style.display = 'block'
           }, 10);
-        } else {Ji
+        } else {
           popup.style.display = 'block'
         }
       })
@@ -35,4 +35,4 @@ const togglePopUp = () => {
   })
 }
 
-export default togglePopUp;
+export default togglePopUp

@@ -13,7 +13,9 @@ const sendForm = () => {
     form2Email = document.getElementById('form2-email'),
     form3Name = document.getElementById('form3-name'),
     form3Phone = document.getElementById('form3-phone'),
-    form3Email = document.getElementById('form3-email');
+    form3Email = document.getElementById('form3-email'),
+    popupContent = document.querySelector('.popup-content'),
+    popup = document.querySelector('.popup');
   
   const form = document.getElementById('form1'),
     form2 = document.getElementById('form2'),
@@ -28,11 +30,11 @@ const sendForm = () => {
     form.appendChild(statusMessage);
     statusMessage.textContent = loadMessage;
     const formData = new FormData(form);
-    // let body = {};
-    // formData.forEach((val, key) => {
-    //   body[key] = val;
-    // })
-    postData(formData)
+    let body = {};
+    formData.forEach((val, key) => {
+      body[key] = val;
+    })
+    postData(body)
       .then((response) => {
         if(response.status !== 200){
           throw new Error('status network not 200')
@@ -47,27 +49,29 @@ const sendForm = () => {
         form1Name.value = '';
         form1Email.value = '';
         form1Phone.value = '';
+        setTimeout(() => statusMessage.style.display = 'none', 5000);
       })
+    
   });
 
   form2.addEventListener('submit', (event) => {
     event.preventDefault();
     form2.appendChild(statusMessage);
     statusMessage.textContent = loadMessage;
-    const formData = new FormData(form);
-    // let body = {};
-    // formData.forEach((val, key) => {
-    //   body[key] = val;
-    // })
-    postData(formData)
+    const formData = new FormData(form2);
+    let body = {};
+    formData.forEach((val, key) => {
+      body[key] = val;
+    })
+    postData(body)
       .then((response) => {
         if(response.status !== 200){
           throw new Error('status network not 200')
         } 
-        statusMessage.textContent = sucsessMessage
+        statusMessage.textContent = sucsessMessage;;
       })
     .catch((error) => {
-      statusMessage.textContent = errorMessage
+      statusMessage.textContent = errorMessage;;
       console.error(error)
     })
       .finally(() => {
@@ -75,6 +79,7 @@ const sendForm = () => {
         form2Message.value = '';
         form2Phone.value = '';
         form2Email.value = '';
+        setTimeout(() => statusMessage.style.display = 'none', 5000);
       })
   });
 
@@ -83,37 +88,37 @@ const sendForm = () => {
     form3.appendChild(statusMessage);
     statusMessage.style.cssText = `color: #fff;`;
     statusMessage.textContent = loadMessage;
-    const formData = new FormData(form);
-    // let body = {};
-    // formData.forEach((val, key) => {
-    //   body[key] = val;
-    // })
-    postData(formData)
+    const formData = new FormData(form3);
+    let body = {};
+    formData.forEach((val, key) => {
+      body[key] = val;
+    })
+    postData(body)
       .then((response) => {
         if(response.status !== 200){
           throw new Error('status network not 200')
         }
-        statusMessage.textContent = sucsessMessage
+        statusMessage.textContent = sucsessMessage;
       })
     .catch((error) => {
-      statusMessage.textContent = errorMessage
+      statusMessage.textContent = errorMessage;
       console.error(error)
     })
     .finally(() => {
       form3Name.value = '';
       form3Phone.value = '';
       form3Email.value = '';
+      setTimeout(() => popup.style.display = 'none', 5000);
       })
   });
 
-  const postData = (formData) => {
+  const postData = (body) => {
     return fetch('./server.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      },
-      // body: fd._blob ? fd._blob(formData) : fd,
-      body: JSON.stringify(formData),
+       },
+      body: JSON.stringify(body),
       credentials: "include"
     });
 

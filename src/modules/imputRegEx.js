@@ -34,6 +34,8 @@ const imputRegEx = () => {
     form3Phone.addEventListener('input', () => {
       form3Phone.value = form3Phone.value.replace(/[^0-9\+]/g, '')
     })
+
+
 }
 
 export default imputRegEx;
